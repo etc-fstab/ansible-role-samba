@@ -1,0 +1,16 @@
+---
+samba_mgmt_by_family: "yes"
+
+samba_packages:
+  - samba
+  - samba-libs
+  - samba-common
+  - samba-common-tools
+  - samba-common-libs
+  - samba-client-libs
+
+# in case not all samba relevant services need to be online
+samba_services:
+  - { name: "smb", state: "started"}
+...
+

@@ -1,0 +1,36 @@
+---
+- name: Manage samba packages
+  ansible.builtin.package:
+    name: "{{ samba_packages }}"
+    state: present
+
+- name: Manage samba services
+  when: item.state == "started"
+  ansible.builtin.service:
+    name: "{{ item.name }}"
+    state: "started"
+    enabled: true
+  with_items: "{{ samba_services }}"
+
+- name: Manage /etc/samba/smb.conf
+  ansible.builtin.template:
+    src: "{{ etc_samba_smb_conf }}"
+    dest: /etc/samba/smb.conf
+    owner: root
+    group: root
+    mode: '0644'
+    backup: true
+  notify:
+    - Restart samba services
+
+- name: Manage /etc/samba/shares.conf
+  ansible.builtin.template:
+    src: "{{ etc_samba_shares_conf }}"
+    dest: /etc/samba/shares.conf
+    owner: root
+    group: root
+    mode: '0644'
+    backup: true
+  notify:
+    - Restart samba services
+...

@@ -1,0 +1,8 @@
+---
+- name: Restart samba services
+  when: item.state == "started"
+  ansible.builtin.service:
+    name: "{{ item.name }}"
+    state: restarted
+  with_items: "{{ samba_services }}"
+...

@@ -1,0 +1,19 @@
+---
+# Solaris
+
+samba_mgmt_by_family: "yes"
+
+samba_packages:
+  - service/network/samba
+  - service/file-system/smb
+  - system/file-system/smb
+
+# in case not all samba relevant services need to be online
+samba_services:
+  - { name: "svc:/network/smb:default", state: "started"}
+  - { name: "svc:/network/samba:default", state: "started"}
+  - { name: "svc:/network/smb/client:default", state: "stopped"}
+  - { name: "svc:/network/smb/client2:default", state: "stopped"}
+  - { name: "svc:/network/smb/server:default", state: "stopped"}
+...
+

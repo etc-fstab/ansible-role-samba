@@ -1,0 +1,10 @@
+---
+# Host group based variables
+
+# Likely this var is 'yes'.
+# Otherwize, smb is not managed by default.
+samba_mgmt_by_unit: "yes"
+
+etc_samba_smb_conf: "hostgroup=example/etc_samba_smb_conf.j2"
+etc_samba_shares_conf: "hostgroup=example/etc_samba_shares_conf.j2"
+...

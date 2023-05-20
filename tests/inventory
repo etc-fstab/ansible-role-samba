@@ -1,0 +1,6 @@
+[test:vars]
+ansible_ssh_common_args='-o StrictHostKeyChecking=no'
+
+[test]
+# test-host ansible_ssh_user=root ansible_ssh_pass=<passwd> hostgroup=<group>
+

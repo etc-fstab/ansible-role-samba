@@ -1,0 +1,6 @@
+---
+- name: Test samba role
+  hosts: test
+  roles:
+    - role: ../../ansible-role-samba
+...

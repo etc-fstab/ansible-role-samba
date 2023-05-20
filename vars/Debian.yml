@@ -1,0 +1,7 @@
+---
+# ex, there is no debian/ubuntu samba servers
+samba_mgmt_by_family: "no"
+
+samba_packages: []
+samba_services: []
+...

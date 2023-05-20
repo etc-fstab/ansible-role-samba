@@ -1,0 +1,18 @@
+---
+- name: No samba mgmt
+  ansible.builtin.debug:
+    msg:
+      - "No samba mgmt for {{ inventory_hostname }}"
+
+- name: Stop, disable samba services
+  ansible.builtin.service:
+    name: "{{ item.name }}"
+    state: "stopped"
+    enabled: false
+  with_items: "{{ samba_services }}"
+  register: result
+  failed_when:
+    - "result is failed and not 'svcadm: Pattern' in result.msg"
+    - "result is failed and not 'match any instances' in result.msg"
+    - "result is failed and not 'not find the requested service' in result.msg"
+...

@@ -1,0 +1,39 @@
+galaxy_info:
+  role_name: ansible_role_samba
+  namespace: etc_fstab
+  author: zd
+  description: Management of Samba server
+
+  license: "Public Domain"
+
+  min_ansible_version: 2.10.7
+
+  platforms:
+    - name: EL
+      versions:
+        - all
+    - name: OracleLinux
+      versions:
+        - all
+    - name: Fedora
+      versions:
+        - all
+    - name: Ubuntu
+      versions:
+        - all
+    - name: Debian
+      versions:
+        - all
+    - name: Solaris
+      versions:
+        - all
+
+  galaxy_tags:
+    - system
+    - performance
+    - samba
+    - tools
+    - linux
+    - solaris
+
+dependencies: []

@@ -1,0 +1,49 @@
+---
+- name: Gather facts
+  ansible.builtin.setup:
+    gather_subset:
+      - 'min'
+
+- name: Load family vars (service, packages)
+  ansible.builtin.include_vars:
+    "{{ lookup('ansible.builtin.first_found', params) }}"
+  vars:
+    params:
+      files:
+        - "{{ ansible_os_family }}.yml"
+        - "unknown-family.yml"
+      paths:
+        - "vars"
+
+- name: Load host, hostgroup vars (conf and shares)
+  ansible.builtin.include_vars:
+    "{{ lookup('ansible.builtin.first_found', params) }}"
+  vars:
+    params:
+      files:
+        - "hostname={{ inventory_hostname }}.yml"
+        - "hostgroup={{ hostgroup }}.yml"
+        - "main.yml"
+      paths:
+        - "vars"
+
+- name: Samba management poll
+  ansible.builtin.debug:
+    msg:
+      - "Samba mgmt for family: {{ samba_mgmt_by_family }}"
+      - "Samba mgmt for host, hostgroup: {{ samba_mgmt_by_unit }}"
+
+- name: No Samba mgmt
+  when:
+    samba_mgmt_by_family is regex('^([Nn]{1})([Oo]{0,1})$')
+    or
+    samba_mgmt_by_unit is regex('^([Nn]{1})([Oo]{0,1})$')
+  ansible.builtin.include_tasks: no-samba.yml
+
+- name: Samba mgmt
+  when:
+    samba_mgmt_by_family is regex('^([Yy]{1})(([Ee][Ss]){0,1})$')
+    and
+    samba_mgmt_by_unit is regex('^([Yy]{1})(([Ee][Ss]){0,1})$')
+  ansible.builtin.include_tasks: samba.yml
+...
