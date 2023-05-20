@@ -16,4 +16,3 @@ samba_services:
   - { name: "svc:/network/smb/client2:default", state: "stopped"}
   - { name: "svc:/network/smb/server:default", state: "stopped"}
 ...
-

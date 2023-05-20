@@ -2,7 +2,7 @@
 # Host based variables
 
 # Likely this var is 'yes'.
-# Otherwize, smb is not managed on a host by default. 
+# Otherwize, smb is not managed on a host by default.
 samba_mgmt_by_unit: "yes"
 
 etc_samba_smb_conf: "hostname=fqdn-example/etc_samba_smb_conf.j2"

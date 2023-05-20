@@ -13,4 +13,3 @@ samba_packages:
 samba_services:
   - { name: "smb", state: "started"}
 ...
-
