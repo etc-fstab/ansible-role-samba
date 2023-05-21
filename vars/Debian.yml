@@ -1,7 +1,9 @@
 ---
-# ex, there is no debian/ubuntu samba servers
-samba_mgmt_by_family: "no"
+samba_mgmt_by_family: "Y"
 
-samba_packages: []
-samba_services: []
+samba_packages:
+  - samba
+
+samba_services:
+  - {name: "smbd", state: "started" }
 ...

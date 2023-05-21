@@ -15,6 +15,7 @@ The role supports various use cases where you can define:
 - Ansible OS family running Samba (ex. some os/distro in your company don't run/support Samba)
 - Host based Samba conf (ex, a host has specific/unique samba conf)
 - Group of hosts running Samba (ex, a group of hosts has unique samba conf)
+- Common default is 'no', meaning if no host/hostgroup samba cfg, the role won't configure samnba on a common host. 
 
 Requirements
 ------------
